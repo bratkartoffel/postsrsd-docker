@@ -1,0 +1,18 @@
+#!/bin/ash
+set -e
+
+readonly PID_FILE="/run/postsrsd/postsrsd.pid"
+
+[[ -e "$PID_FILE" ]] && rm -v "$PID_FILE"
+
+exec /usr/sbin/postsrsd \
+  -f"$APP_PORT_FOR" \
+  -r"$APP_PORT_REV" \
+  -l0.0.0.0 \
+  -s"$APP_SECRETS_FILE" \
+  -d"$APP_DOMAIN" \
+  -p"$PID_FILE" \
+  $APP_ADDITIONAL_PARAMS
+
+# vim: set ft=bash ts=2 sts=2 expandtab:
+
