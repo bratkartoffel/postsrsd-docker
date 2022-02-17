@@ -9,5 +9,8 @@ RUN apk upgrade --no-cache \
 # add the custom configurations
 COPY rootfs/ /
 
+# default postsrsd ports
+EXPOSE 10001/tcp 10002/tcp
+
 CMD [ "/entrypoint.sh" ]
 
